@@ -1,32 +1,51 @@
+<div class="row">
+  <div class="col-xs-6">
 <%= form_for(task) do |f| %>
 
 <% if task.errors.any? %>
-
+  
   <div id="error_explanation">
+    <div class="alert alert-warning">
+<%
+=begin
+>%>せっかくなのでのこしておく
     <h2>
   <%= pluralize(task.errors.count, "error") %>
   prohibited this task from being saved:
     </h2>
+<%
+=end
+%>
     <ul>
-      
-<% task.errors.full_messages.each do |task| %>
-      <li>
-        <%=task %>
-      </li>
+      <% task.errors.full_messages.each do |task| %>
+      <li><%=task %></li>
       <% end %>
     </ul>
   </div>
-  <%end%>
+  <% end %>
 
-<%= f.label :content, "タスク" %>
+<div class="form-group">
+  <div class="col-xs-12 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6">
+  <%= f.label :content, "タスク" %>
+    
+    <%= f.text_field :content, class: "form-control" %>
+  </div>
 
-<%= f.text_field :content %>  
+  
+</div>
+
+<div class="form-group">
+  <div class="col-xs-12 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6">
+  <%= f.label :status, "進捗" %>
+    <%# どっちでも %>
+    <%=f.select :status, [["未着手", "未着手"], ["絶望", "絶望"],["あきらめ", "あきらめ"]],{include_blank: "選んでください", selected: "選んでください"}, {class: "form-control"} %>
+    <%#=f.select :status, [["未着手", "未着手"], ["絶望", "絶望"], ["あきらめ", "あきらめ"]], {:prompt => "選んでください"}, {:class => "form-control"} %>
+  <%= f.submit "投稿", class: "btn btn-primary" %>
+  </div>
+
+</div>
 
 
-<%= f.label :status, "進捗" %>
-
-<%= f.select :status, [["未着手", "未着手"], ["絶望", "絶望"],["あきらめ", "あきらめ"]],  :prompt => "選んでください" %>
-
-<%= f.submit "投稿" %>
-
+</div>
+</dev>
 <% end %>
