@@ -11,9 +11,10 @@
   </aside>
   <div class="col-xs-8">
     <ul class="nav nav-tabs nav-justified">
-      <li><a href="#">タスク</a></li>
+      <li class="<%= 'active' if current_page?(user_path(@user)) %>"><%= link_to user_path(@user) do %>タスク <span class="badge"><%= @count_taskposts %></span><% end %></li>
       <li><a href="#">タスク共有者①</a></li>
       <li><a href="#">タスク共有者②</a></li>
     </ul>
+     <%= render 'taskposts/taskposts', taskposts: @taskposts, user: @user %>
   </div>
 </div>

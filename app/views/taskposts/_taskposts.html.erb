@@ -1,0 +1,21 @@
+<ul class="media-list">
+  <% taskposts.each do |taskpost| %>
+    <% user = taskpost.user %>
+    <li class="media">
+      <div class="media-left">
+        <img class="media-object img-rounded" src="<%= gravatar_url(current_user, options = { size: 50 }) %>" alt="">
+      </div>
+      <div class="media-body">
+        <div>
+          <%= link_to user.name, user_path(user) %> <span class="text-muted">posted at <%= taskpost.created_at %></span>
+        </div>
+        <div>
+          <p>タスク: <%= taskpost.content %></p>
+          <p>進捗: <%= taskpost.status %></p>   
+               
+        </div>
+      </div>
+    </li>
+  <% end %>
+  <%= paginate taskposts %>
+</ul>
