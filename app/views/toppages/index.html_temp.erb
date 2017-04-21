@@ -1,20 +1,22 @@
 <% if logged_in? %>
   <div class="row">
     <aside class="col-md-4">
-      <%= form_for(@task) do |f| %>
+      <%= form_for(@taskpost) do |f| %>
       <div class="form-group">
         <%= f.label :content, "タスク" %>
         <%= f.text_field :content, class: "form-control" %>
       </div>
       <div class="form-group">
         <%= f.label :status, "進捗" %>
+          <%# どっちでも %>
         <%=f.select :status, [["未着手", "未着手"], ["絶望", "絶望"],["あきらめ", "あきらめ"]],{include_blank: "選んでください", selected: "選んでください"}, {class: "form-control"} %>
+          <%#=f.select :status, [["未着手", "未着手"], ["絶望", "絶望"], ["あきらめ", "あきらめ"]], {:prompt => "選んでください"}, {:class => "form-control"} %>
         <%= f.submit "投稿", class: "btn btn-primary" %>
       </div>
       <% end %>
     </aside>
     <div class="col-xs-8">
-      <%= render 'tasks/tasks', tasks: @tasks, user: @user %>
+      <%= render 'taskposts/taskposts', taskposts: @taskposts, user: @user %>
     </div>
   </div>
 <% else %>

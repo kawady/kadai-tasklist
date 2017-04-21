@@ -6,7 +6,12 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
 
   get 'signup', to: 'users#new'
+  
+   # edit: 更新用のフォームページ
+  get 'tasks/:id/edit', to: 'tasks#edit'
+  
+ # get "tasks", to: "toppages#index"
   resources :users, only: [:index, :show, :new, :create] 
   
-  resources :taskposts, only: [:create, :destroy, :edit, :update, :show]
+  resources :tasks, only: [:create, :destroy, :edit, :update, :show]
 end
